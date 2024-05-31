@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+</head>
+<body>
+    <div class="nav1">
+        <h2 style="margin-left: 180px;">XYZ-CAMPANY</h2>
+        <h5 style="margin-left: 160px;">CURRENCY EXCHANGE PLATFORM</h5>
+    </div>
+    
+    <div class="nav5">
+        <form id="conversionForm">
+            <div class="nav4">
+                <label>Amount</label><br>
+                <input type="text" id="amount" name="amount" value="">
+            </div>
+            <div class="nav2">
+                <label>From</label><br>
+                <select id="fromCurrency">
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="rwf">RWF</option>
+                    <option value="gbp">GBP</option>
+                </select>
+            </div>
+            <div class="nav3">
+                <label>To</label><br>
+                <select id="toCurrency">
+                    <option value="rwf">RWF</option>
+                    <option value="eur">EUR</option>
+                    <option value="usd">USD</option>
+                    <option value="gbp">GBP</option>
+                </select>
+            </div>
+            <div class="nav6">
+                <button type="button" onclick="convertCurrency()">Convert</button> 
+            </div>
+        </form>
+    </div>
+    <div>
+        <p style="margin-left: 400px;margin-top:-60px;">RESULT:</p>
+        <p id="result" style="margin-left: 400px;"></p>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            var amount = parseFloat(document.getElementById('amount').value);
+            var fromCurrency = document.getElementById('fromCurrency').value;
+            var toCurrency = document.getElementById('toCurrency').value;
+
+            // You'll need to replace these with actual conversion rates
+            var conversionRates = {
+                usd: {
+                    eur: 0.85,
+                    rwf: 990,
+                    gbp: 0.72
+                },
+                eur: {
+                    usd: 1.18,
+                    rwf: 1180,
+                    gbp: 0.87
+                },
+                rwf: {
+                    usd: 0.001,
+                    eur: 0.00085,
+                    gbp: 0.00061
+                },
+                gbp: {
+                    usd: 1.39,
+                    eur: 1.15,
+                    rwf: 1632
+                }
+            };
+
+            var result = amount * conversionRates[fromCurrency][toCurrency];
+            document.getElementById('result').textContent = result.toFixed(2) + " " + toCurrency.toUpperCase();
+        }
+    </script>
+</body>
+</html>
